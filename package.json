@@ -1,7 +1,7 @@
 {
-  "name": "@bbc/react-transcript-editor",
+  "name": "@jodge/react-transcript-editor",
   "description": "A React component to make transcribing audio and video easier and faster.",
-  "version": "1.4.0",
+  "version": "0.1.0",
   "keywords": [
     "transcript",
     "transcriptions",
@@ -10,7 +10,7 @@
     "speech to text",
     "textAV"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006",

@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   faCog,
   faKeyboard,
-  faShare
+  faDownload
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -47,14 +48,21 @@ class Header extends React.Component {
         </button>
         <button
           className={ `${ style.settingsButton }` }
-          title="Export"
+          title="Download"
           onClick={ props.handleExportToggle }
         >
-          <FontAwesomeIcon icon={ faShare } />
+          Download
+          <FontAwesomeIcon icon={ faDownload } />
         </button>
       </div>
     </>);
   };
 }
+
+Header.propTypes = {
+  handleExportToggle: PropTypes.func,
+  handleShortcutsToggle: PropTypes.func,
+  handleSettingsToggle: PropTypes.func
+};
 
 export default Header;

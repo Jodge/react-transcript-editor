@@ -4,7 +4,7 @@ $slider-width-number: 1440;
 $slider-width: #{$slider-width-number}px;
 $slider-height: 10px;
 $background-slider: $color-light-grey;
-$bar-slider-filled: $color-labs-red;
+$bar-slider-filled: $color-labs-blue;
 $thumb-width: 16px;
 $thumb-height: 24px;
 $shadow-size: -7px;
@@ -56,7 +56,7 @@ $fit-thumb-in-slider: -7px;
     height: $thumb-height;
     width: $thumb-width;
     margin-top: $fit-thumb-in-slider;
-    background: $color-labs-red;
+    background: $color-labs-blue;
     box-shadow: makelongshadow($color-light-grey, $shadow-size);
   }
 
@@ -76,7 +76,7 @@ $fit-thumb-in-slider: -7px;
     margin-top: $fit-thumb-in-slider;
     border: 0;
     border-radius: 0;
-    background: $color-labs-red;
+    background: $color-labs-blue;
     box-shadow: makelongshadow($color-light-grey, $shadow-size);
   }
 }

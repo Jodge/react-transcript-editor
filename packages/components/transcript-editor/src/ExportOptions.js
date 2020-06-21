@@ -9,8 +9,8 @@ class ExportOptions extends React.Component {
 
   render() {
     const btns = this.props.exportOptionsList.map((opt, index) => {
-      return (<><button 
-        key={opt.label+index}
+      return (<><button
+        key={ opt.label + index }
         title={ opt.label }
         className={ style.playerButton }
         key={ opt.value }
@@ -24,7 +24,7 @@ class ExportOptions extends React.Component {
 
     return (
       <div className={ style.settings }>
-        <h2 className={ style.header }>Export Options</h2>
+        <h4 className={ style.header }>Download Options</h4>
         <div className={ style.closeButton }
           onClick={ this.props.handleExportToggle }
         >

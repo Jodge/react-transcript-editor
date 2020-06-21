@@ -6,7 +6,7 @@
   margin: 0 auto;
   height: auto;
   vertical-align: middle;
-  color: black;
+  color: #212529;
   background: $color-lightest-grey;
   z-index: 2;
   position: absolute;
@@ -43,7 +43,7 @@
 .shortcut {
   display: inline-block;
   width: 6em;
-  background: $color-labs-red;
+  background: $color-labs-blue;
   font-weight: lighter;
   color: white;
   padding: 0 0;

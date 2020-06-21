@@ -27,7 +27,7 @@ video{
   text-align: center;
   cursor: pointer;
   float: right;
-  padding-right: 2.5em;
+  padding-right: 7.5em;
   margin: 0.5em 0;
   color: white;
   display: block;
@@ -48,10 +48,9 @@ video{
   display: inline-block;
   border: 0;
   color: white;
-  font-size: 1em;
+  font-size: 1.2em;
   cursor: pointer;
   text-align: center;
-  width: 2em;
   height: 2em;
 
   &:hover {
@@ -61,7 +60,7 @@ video{
 
 
 .icon {
-  color: $color-labs-red;
+  color: $color-labs-blue;
   margin-right: 0.5em;
 }
 

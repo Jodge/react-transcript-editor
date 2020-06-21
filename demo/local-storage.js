@@ -35,6 +35,7 @@ const loadLocalSavedData = (mediaUrl, fileName) => {
     mediaUrlName = fileName;
   }
   const data = JSON.parse(localStorage.getItem(`draftJs-${ mediaUrlName }`));
+
   return data;
 };
 
