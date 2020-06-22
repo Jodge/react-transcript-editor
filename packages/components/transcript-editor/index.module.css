@@ -70,8 +70,9 @@ video{
 
 @media (min-width: 1020px) {
   .aside {
-    margin: 0 auto;
     display: flex;
+    align-items: stretch;
+    margin-left: 2em;
     flex-direction: column;
   }
   .mainWithAudiio{
@@ -128,8 +129,9 @@ video{
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
 
   .aside {
-    margin: 0 auto;
     display: flex;
+    align-items: stretch;
+    margin-left: 2em;
     flex-direction: column;
   }
 
@@ -156,8 +158,9 @@ video{
 @media all and (device-height: 768px) and (device-width: 1024px) and (orientation: landscape) {
 
   .aside {
-    margin: 0 auto;
     display: flex;
+    align-items: stretch;
+    margin-left: 2em;
     flex-direction: column;
   }
 
@@ -191,6 +194,8 @@ video{
   .aside{
     margin-top: 0px;
     display: flex;
+    align-items: stretch;
+    margin-left: 2em;
     flex-direction: column;
   }
 
