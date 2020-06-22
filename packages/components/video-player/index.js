@@ -30,6 +30,7 @@ class VideoPlayer extends React.Component {
     return (
       <video
         id="video"
+        poster="https://res.cloudinary.com/smarttranscribers/image/upload/c_scale,w_200/v1592817715/logo/st.png"
         playsInline
         src={ this.props.mediaUrl }
         onTimeUpdate={ this.props.onTimeUpdate }

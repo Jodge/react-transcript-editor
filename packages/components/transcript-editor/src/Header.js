@@ -51,7 +51,7 @@ class Header extends React.Component {
           title="Download"
           onClick={ props.handleExportToggle }
         >
-          Download
+          Download {' '}
           <FontAwesomeIcon icon={ faDownload } />
         </button>
       </div>

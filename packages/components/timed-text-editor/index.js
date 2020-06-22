@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
   EditorState,
   CompositeDecorator,
-  RichUtils,
   convertFromRaw,
   convertToRaw,
   getDefaultKeyBinding,
@@ -304,10 +303,13 @@ class TimedTextEditor extends React.Component {
     const tKey = 84;
 
     if (e.keyCode === enterKey) {
-      console.log('customKeyBindingFn');
-
       return 'split-paragraph';
     }
+
+    if (e.keyCode === jKey) {
+      return 'strikethrough';
+    }
+
     // if alt key is pressed in combination with these other keys
     if (
       e.altKey &&
@@ -338,12 +340,28 @@ class TimedTextEditor extends React.Component {
       this.splitParagraph();
     }
 
+    if (command === 'strikethrough') {
+      this.strikeThrough();
+    }
+
     if (command === 'keyboard-shortcuts') {
       return 'handled';
     }
 
     return 'not-handled';
   };
+
+  strikeThrough = () => {
+    const currentSelection = this.state.editorState.getSelection();
+    const currentContent = this.state.editorState.getCurrentContent();
+    const newContentState = Modifier.applyInlineStyle(currentContent, currentSelection, 'text-decoration: line-through;');
+    const strikeThroughState = EditorState.push(
+      this.state.editorState,
+      newContentState,
+      'change-inline-style'
+    );
+    this.setState({ editorState: strikeThroughState });
+  }
 
   /**
    * Helper function to handle splitting paragraphs with return key

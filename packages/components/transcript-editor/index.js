@@ -17,7 +17,7 @@ const exportOptionsList = [
   { value: 'txt', label: 'Plain Text (*.txt)' },
   {
     value: 'txtspeakertimecodes',
-    label: 'Plain Text (*.txt) - with Speakers and TimeCodes'
+    label: 'Plain Text - with Speakers & Time'
   },
   { value: 'docx', label: 'Microsoft Word (*.docx)' }
 ];
@@ -41,7 +41,7 @@ class TranscriptEditor extends React.Component {
       showSpeakers: true,
       previewIsDisplayed: true,
       mediaDuration: '00:00:00:00',
-      gridDisplay: null,
+      gridDisplay: null
     };
     this.timedTextEditorRef = React.createRef();
   }
@@ -467,8 +467,19 @@ class TranscriptEditor extends React.Component {
 
         <div className={ style.grid }>
           <section className={ style.row } style={ this.state.gridDisplay }>
-            <aside className={ style.aside } style={ this.state.displayMedia }>
-              {this.props.mediaUrl ? videoPlayer : null}
+            <aside className={ style.aside }>
+              <div style={ this.state.displayMedia }>
+                {this.props.mediaUrl ? videoPlayer : null}
+              </div>
+              <div className="form-group mt-4">
+                <label htmlFor="notes">NOTES</label>
+                <textarea
+                  className="form-control"
+                  id="notes"
+                  rows="10"
+                  onChange={ this.props.handleNotesChange }>
+                </textarea>
+              </div>
             </aside>
 
             <main
@@ -497,6 +508,7 @@ TranscriptEditor.propTypes = {
   spellCheck: PropTypes.bool,
   sttJsonType: PropTypes.string,
   handleAnalyticsEvents: PropTypes.func,
+  handleNotesChange: PropTypes.func,
   fileName: PropTypes.string,
   transcriptData: PropTypes.object,
   mediaType: PropTypes.string

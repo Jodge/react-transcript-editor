@@ -8,7 +8,7 @@
 .main {
   margin-top: 1em;
   margin-bottom: 1em;
-  box-shadow: 0 0 10px #ccc; 
+  box-shadow: 0 0 10px #ccc;
 }
 
 .mainWithAudiio{
@@ -20,7 +20,7 @@
 video{
   margin-top: 1em;
   display: block;
-  box-shadow: 0 0 10px #ccc; 
+  box-shadow: 0 0 10px #ccc;
 }
 
 .help {
@@ -44,17 +44,15 @@ video{
 .settingsButton {
   line-height: 1em;
   margin-left: 0.5em;
-  background: $color-darkest-grey;
+  background: #ffc107;
   display: inline-block;
   border: 0;
-  color: white;
-  font-size: 1.2em;
   cursor: pointer;
   text-align: center;
   height: 2em;
 
   &:hover {
-    background: $color-dark-grey;
+    background: #f2b600;
   }
 }
 
@@ -72,7 +70,9 @@ video{
 
 @media (min-width: 1020px) {
   .aside {
-    margin-left: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
   .mainWithAudiio{
     margin-right: 20%;
@@ -97,7 +97,7 @@ video{
 /* Desktop size */
 @media  (min-width: 769px) and (max-width: 1020px){
 
-  
+
   .grid {
     margin-top: 1em;
     margin-left: 1em;
@@ -128,7 +128,9 @@ video{
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
 
   .aside {
-    margin-left: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .main {
@@ -154,7 +156,9 @@ video{
 @media all and (device-height: 768px) and (device-width: 1024px) and (orientation: landscape) {
 
   .aside {
-    margin-left: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .main {
@@ -186,6 +190,8 @@ video{
 
   .aside{
     margin-top: 0px;
+    display: flex;
+    flex-direction: column;
   }
 
   .mainWithAudiio{

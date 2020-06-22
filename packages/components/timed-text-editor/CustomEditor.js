@@ -67,7 +67,13 @@ CustomEditor.propTypes = {
   showSpeakers: PropTypes.bool,
   showTimecodes: PropTypes.bool,
   handleAnalyticsEvents: PropTypes.func,
-  onWordClick: PropTypes.func
+  handleKeyCommand: PropTypes.func,
+  customKeyBindingFn: PropTypes.func,
+  spellCheck: PropTypes.bool,
+  editorState: PropTypes.object,
+  onWordClick: PropTypes.func,
+  onChange: PropTypes.func,
+  setEditorNewContentStateSpeakersUpdate: PropTypes.func
 };
 
 export default CustomEditor;
