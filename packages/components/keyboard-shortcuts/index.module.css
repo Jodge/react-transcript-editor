@@ -1,43 +1,29 @@
 @import '../../config/style-guide/colours.scss';
 
 .shortcuts {
-  font-size: 0.85em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
   padding: 1em;
-  margin: 0 auto;
   height: auto;
   vertical-align: middle;
   color: #212529;
   background: $color-lightest-grey;
   z-index: 2;
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .header {
-  margin-top: 0;
-  margin-bottom: 1em;
-  text-align: center;
+  padding-left: 1em;
 }
 
 .closeButton {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1em;
+  text-align: right;
+  padding: 5px 1em 0 0;
   cursor: pointer;
-  z-index: 3;
-}
-
-.list {
-  list-style: none;
-  padding: 1em;
-  margin: 0 auto;
-}
-
-.listItem {
-  margin: 0 auto;
-  margin-bottom: 0.5em;
 }
 
 .shortcut {
@@ -53,6 +39,17 @@
 }
 
 .shortcutLabel {
-  display: inline-block;
-  text-align: left;
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+  margin: .5em 0;
+}
+
+.shortcutButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.shortcutWrapper {
+  padding: 0 1em;
 }

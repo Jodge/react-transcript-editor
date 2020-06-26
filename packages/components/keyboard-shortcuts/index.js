@@ -15,24 +15,39 @@ class KeyboardShortcuts extends React.Component {
 
     const hotKeysCheatsheet = Object.keys(hotKeys).map(key => {
       const shortcut = hotKeys[key];
+      const keyComamands = shortcut.displayKeyCombination.split(/\+(.+)/).filter(Boolean);
 
       return (
-        <li key={ key } className={ style.listItem }>
-          <div className={ style.shortcut }>{shortcut.displayKeyCombination}</div>
+        <div key={ key } className={ style.shortcutWrapper }>
           <div className={ style.shortcutLabel }>{shortcut.label}</div>
-        </li>
+          <div className= { style.shortcutButtons }>
+            {keyComamands.map((item, i, arr) => {
+              const divider = i < arr.length - 1 && <span>{ }+{ }</span>;
+
+              return (
+                // eslint-disable-next-line react/no-array-index-key
+                <span key={ i }>
+                  <button className="btn btn-secondary">{item}</button>
+                  {divider}
+                </span>
+              );
+            })}
+          </div>
+        </div>
       );
     });
 
     return (
       <div className={ style.shortcuts }>
-        <h2 className={ style.header }>Shortcuts</h2>
+        <div>
+          <h2 className={ style.header }>Shortcuts</h2>
+        </div>
         <div
           className={ style.closeButton }
           onClick={ this.props.handleShortcutsToggle }>
           <FontAwesomeIcon icon={ faWindowClose } />
         </div>
-        <ul className={ style.list }>{hotKeysCheatsheet}</ul>
+        {hotKeysCheatsheet}
       </div>
     );
   }

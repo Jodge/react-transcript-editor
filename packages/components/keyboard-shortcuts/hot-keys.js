@@ -1,34 +1,34 @@
 function returnHotKeys(self) {
   return {
-    'alt+k': {
+    'tab': {
       priority: 1,
       handler: () => {
         self.togglePlayMedia();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'alt+k',
+          action: 'tab',
           name: 'togglePlayMedia',
           value: 'na'
         });
       },
-      displayKeyCombination: 'ALT + K',
-      label: 'PLAY MEDIA'
+      displayKeyCombination: 'TAB',
+      label: 'Play / Pause'
     },
-    'alt+l': {
+    'alt+tab': {
       priority: 1,
       handler: () => {
         self.skipForward();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'alt+l',
+          action: 'alt+tab',
           name: 'skipForward',
           value: 'na'
         });
       },
-      displayKeyCombination: 'ALT + L',
-      label: 'FAST FORWARD'
+      displayKeyCombination: 'ALT + TAB',
+      label: 'Skip Forward'
     },
     'alt+j': {
       priority: 1,
@@ -43,7 +43,7 @@ function returnHotKeys(self) {
         });
       },
       displayKeyCombination: 'ALT + J',
-      label: 'REWIND'
+      label: 'Rewind'
     },
     'alt+-': {
       priority: 1,
@@ -58,7 +58,7 @@ function returnHotKeys(self) {
         });
       },
       displayKeyCombination: 'ALT + -',
-      label: 'Decrease Playback Speed'
+      label: 'Decrease Speed'
     },
     // https://github.com/ccampbell/mousetrap/issues/266
     'alt+=': {
@@ -74,22 +74,22 @@ function returnHotKeys(self) {
         });
       },
       displayKeyCombination: 'ALT + +',
-      label: 'Increase Playback Speed'
+      label: 'Increase Speed'
     },
-    'alt+r': {
+    'shift+tab': {
       priority: 1,
       handler: () => {
         self.rollBack();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'alt+r',
+          action: 'shift+tab',
           name: 'rollBack',
           value: 'na'
         });
       },
       displayKeyCombination: 'ALT + R',
-      label: 'ROLL BACK'
+      label: 'Back 15sec'
     },
     'alt+t': {
       priority: 1,
@@ -105,6 +105,20 @@ function returnHotKeys(self) {
       },
       displayKeyCombination: 'ALT + T',
       label: 'Set current time'
+    },
+    'ctrl+z': {
+      priority: 1,
+      handler: () => {
+        self.promptSetCurrentTime();
+
+        self.props.handleAnalyticsEvents({
+          category: 'defaultHotKeys',
+          action: 'ctrl+z',
+          value: 'na'
+        });
+      },
+      displayKeyCombination: 'CTRL + Z',
+      label: 'Undo'
     }
   };
 }

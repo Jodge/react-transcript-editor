@@ -1,36 +1,36 @@
 function returnHotKeys(self) {
   return {
-    'alt+k': {
+    'tab': {
       priority: 1,
       handler: () => {
         self.togglePlayMedia();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'alt+k',
+          action: 'tab',
           name: 'togglePlayMedia',
           value: 'na'
         });
 
       },
-      displayKeyCombination: 'alt + k',
+      displayKeyCombination: 'tab',
       label: 'Play Media',
     },
-    'alt+l': {
+    'alt+tab': {
       priority: 1,
       handler: () => {
         self.skipForward();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'alt+l',
+          action: 'alt+tab',
           name: 'skipForward',
           value: 'na'
         });
 
       },
-      displayKeyCombination: 'alt + l',
-      label: 'Fast Forward',
+      displayKeyCombination: 'alt + tab',
+      label: 'Skip Forward',
     },
     'alt+j': {
       priority: 1,
@@ -45,7 +45,7 @@ function returnHotKeys(self) {
         });
 
       },
-      displayKeyCombination: 'alt + j',
+      displayKeyCombination: 'ALT + J',
       label: 'Rewind',
     },
     'alt+-': {
@@ -81,21 +81,21 @@ function returnHotKeys(self) {
       displayKeyCombination: 'alt + +',
       label: 'Increase Playback Speed',
     },
-    'alt+r': {
+    'shift+tab': {
       priority: 1,
       handler: () => {
         self.rollBack();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'alt+r',
+          action: 'shift+tab',
           name: 'rollBack',
           value: 'na'
         });
 
       },
-      displayKeyCombination: 'alt + r',
-      label: 'Roll Back',
+      displayKeyCombination: 'shift + tab',
+      label: 'Back 15sec',
     },
     'alt+t': {
       priority: 1,

@@ -64,16 +64,16 @@ class PlayerControls extends React.Component {
 
         <div className={ style.btnsGroup }>
           <button
-            value="seek backward by a set interval: alt r"
-            title="seek backward by a set interval: alt r"
+            value="Back 15sec: shift+tab"
+            title="Back 15sec: shift+tab"
             className={ style.playerButton }
             onClick={ this.props.rollback }>
             <FontAwesomeIcon icon={ faUndo } />
           </button>
 
           <button
-            value="seek backward: alt j"
-            title="seek backward: alt j"
+            value="Rewind: ALT + J"
+            title="Rewind: ALT + J"
             className={ style.playerButton }
             onMouseDown={ this.setIntervalHelperBackward }
             onMouseUp={ this.clearIntervalHelper }
@@ -82,16 +82,16 @@ class PlayerControls extends React.Component {
           </button>
 
           <button
-            value="Play/Pause: alt k"
-            title="Play/Pause: alt k"
+            value="Play/Pause: TAB"
+            title="Play/Pause: TAB"
             className={ style.playerButton }
             onClick={ this.props.playMedia }>
             {this.props.isPlaying ? <FontAwesomeIcon icon={ faPause } /> : <FontAwesomeIcon icon={ faPlay } />}
           </button>
 
           <button
-            value="seek forward: alt l"
-            title="seek forward: alt l"
+            value="Skip Forward: ALT + TAB"
+            title="Skip Forward: ALT + TAB"
             className={ style.playerButton }
             onMouseDown={ this.setIntervalHelperForward }
             onMouseUp={ this.clearIntervalHelper }

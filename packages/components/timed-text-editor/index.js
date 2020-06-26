@@ -292,6 +292,7 @@ class TimedTextEditor extends React.Component {
    * Listen for draftJs custom key bindings
    */
   customKeyBindingFn = e => {
+    console.log(e.keyCode);
     const enterKey = 13;
     const spaceKey = 32;
     const kKey = 75;
@@ -301,6 +302,7 @@ class TimedTextEditor extends React.Component {
     const minusKey = 189; // -
     const rKey = 82;
     const tKey = 84;
+    const tabKey = 9;
 
     if (e.keyCode === enterKey) {
       return 'split-paragraph';
@@ -308,7 +310,8 @@ class TimedTextEditor extends React.Component {
 
     // if alt key is pressed in combination with these other keys
     if (
-      e.altKey &&
+      e.keyCode === tabKey ||
+      (e.altKey &&
       (e.keyCode === spaceKey ||
         e.keyCode === spaceKey ||
         e.keyCode === kKey ||
@@ -317,7 +320,7 @@ class TimedTextEditor extends React.Component {
         e.keyCode === equalKey ||
         e.keyCode === minusKey ||
         e.keyCode === rKey ||
-        e.keyCode === tKey)
+        e.keyCode === tKey))
     ) {
       e.preventDefault();
 
