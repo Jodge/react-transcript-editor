@@ -3,7 +3,6 @@
 .shortcuts {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1em;
   padding: 1em;
   height: auto;
   vertical-align: middle;
@@ -22,7 +21,7 @@
 
 .closeButton {
   text-align: right;
-  padding: 5px 1em 0 0;
+  padding: 5px .5em 0 0;
   cursor: pointer;
 }
 

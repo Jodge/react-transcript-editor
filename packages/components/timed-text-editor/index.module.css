@@ -23,3 +23,43 @@ https://github.com/facebook/draft-js/issues/528
     margin: 0 auto;
   }
 }
+
+.findAndReplace {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: .5em 0;
+}
+
+.findAndReplace > * {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 1em;
+  border-right: none;
+  padding: .4em .5em;
+}
+
+.findAndReplace > *:first-child{
+  border-bottom-left-radius: 9px;
+  border-top-left-radius: 9px;
+}
+
+.findAndReplace > *:last-child{
+  border-bottom-right-radius: 9px;
+  border-right: 1px solid #ccc;
+  border-top-right-radius: 9px;
+}
+
+.findAndReplace button{
+  cursor: pointer;
+  background: #f3f3f3;
+  transition: 200ms background;
+}
+
+.findAndReplace button:hover{
+  background: #f9f9f9;
+}
+
+.findAndReplaceHighlight {
+  background: yellow;
+}

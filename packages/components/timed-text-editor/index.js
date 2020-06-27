@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import {
   EditorState,
+  SelectionState,
   CompositeDecorator,
   convertFromRaw,
   convertToRaw,
@@ -18,12 +19,41 @@ import exportAdapter from '../../export-adapters';
 import updateTimestamps from './UpdateTimestamps/index.js';
 import style from './index.module.css';
 
+const findWithRegex = (regex, contentBlock, callback) => {
+  const text = contentBlock.getText();
+  let matchArr, start, end;
+  while ((matchArr = regex.exec(text)) !== null) {
+    start = matchArr.index;
+    end = start + matchArr[0].length;
+    callback(start, end);
+  }
+};
+
+const SearchHighlight = (props) => (
+  <span className={ style.findAndReplaceHighlight }>{props.children}</span>
+);
+
+const generateDecorator = (highlightTerm) => {
+  const regex = new RegExp(highlightTerm, 'g');
+
+  return new CompositeDecorator([ {
+    strategy: (contentBlock, callback) => {
+      if (highlightTerm !== '') {
+        findWithRegex(regex, contentBlock, callback);
+      }
+    },
+    component: SearchHighlight,
+  } ]);
+};
+
 class TimedTextEditor extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(),
+      search: '',
+      replace: ''
     };
   }
 
@@ -55,6 +85,70 @@ class TimedTextEditor extends React.Component {
       // be very frequent operations but rather one time setup in most cases.
       this.forceRenderDecorator();
     }
+  }
+
+  onChangeSearch = (e) => {
+    const search = e.target.value;
+    this.setState({
+      search,
+      editorState: EditorState.set(this.state.editorState, { decorator: generateDecorator(search) }),
+    });
+  }
+
+  onChangeReplace = (e) => {
+    this.setState({
+      replace: e.target.value
+    });
+  }
+
+  onReplace = () => {
+    const regex = new RegExp(this.state.search, 'g');
+    const { editorState } = this.state;
+    const selectionsToReplace = [];
+    const blockMap = editorState.getCurrentContent().getBlockMap();
+
+    blockMap.forEach((contentBlock) => (
+      findWithRegex(regex, contentBlock, (start, end) => {
+        const blockKey = contentBlock.getKey();
+        const blockSelection = SelectionState
+          .createEmpty(blockKey)
+          .merge({
+            anchorOffset: start,
+            focusOffset: end,
+          });
+
+        selectionsToReplace.push(blockSelection);
+      })
+    ));
+
+    let contentState = editorState.getCurrentContent();
+
+    selectionsToReplace.forEach(selectionState => {
+      contentState = Modifier.replaceText(
+        contentState,
+        selectionState,
+        this.state.replace,
+      );
+    });
+
+    const newState = EditorState.push(
+      editorState,
+      contentState,
+    );
+
+    this.setState({
+      editorState: newState,
+      search: '',
+      replace: ''
+    });
+
+    const data = exportAdapter(
+      convertToRaw(newState.getCurrentContent()),
+      'draftjs',
+      null
+    );
+
+    this.props.handleAutoSaveChanges(data);
   }
 
   onChange = editorState => {
@@ -525,7 +619,7 @@ class TimedTextEditor extends React.Component {
 
   render() {
     const currentWord = this.getCurrentWord();
-    const highlightColour = '#b9dcf3';
+    const highlightColour = '#FFFF00';
     const unplayedColor = '#4a4a4a';
     const correctionBorder = '1px dotted blue';
 
@@ -550,6 +644,21 @@ class TimedTextEditor extends React.Component {
           {`span.Word[data-prev-times~="${ time }"] { color: ${ unplayedColor } }`}
           {`span.Word[data-confidence="low"] { border-bottom: ${ correctionBorder } }`}
         </style>
+        <div className={ style.findAndReplace }>
+          <input
+            value={ this.state.search }
+            onChange={ this.onChangeSearch }
+            placeholder="Search..."
+          />
+          <input
+            value={ this.state.replace }
+            onChange={ this.onChangeReplace }
+            placeholder="Replace..."
+          />
+          <button onClick={ this.onReplace }>
+            Replace
+          </button>
+        </div>
         <CustomEditor
           editorState={ this.state.editorState }
           onChange={ this.onChange }
@@ -602,6 +711,7 @@ const decorator = new CompositeDecorator([
 
 TimedTextEditor.propTypes = {
   transcriptData: PropTypes.object,
+  handleAutoSaveChanges: PropTypes.func,
   mediaUrl: PropTypes.string,
   isEditable: PropTypes.bool,
   spellCheck: PropTypes.bool,
