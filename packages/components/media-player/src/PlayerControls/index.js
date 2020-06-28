@@ -72,8 +72,8 @@ class PlayerControls extends React.Component {
           </button>
 
           <button
-            value="Rewind: ALT + J"
-            title="Rewind: ALT + J"
+            value="Rewind: ALT+J"
+            title="Rewind: ALT+J"
             className={ style.playerButton }
             onMouseDown={ this.setIntervalHelperBackward }
             onMouseUp={ this.clearIntervalHelper }
@@ -82,16 +82,16 @@ class PlayerControls extends React.Component {
           </button>
 
           <button
-            value="Play/Pause: TAB"
-            title="Play/Pause: TAB"
+            value="Play/Pause: ALT+P"
+            title="Play/Pause: ALT+P"
             className={ style.playerButton }
             onClick={ this.props.playMedia }>
             {this.props.isPlaying ? <FontAwesomeIcon icon={ faPause } /> : <FontAwesomeIcon icon={ faPlay } />}
           </button>
 
           <button
-            value="Skip Forward: ALT + TAB"
-            title="Skip Forward: ALT + TAB"
+            value="Skip Forward: ALT+F"
+            title="Skip Forward: ALT+F"
             className={ style.playerButton }
             onMouseDown={ this.setIntervalHelperForward }
             onMouseUp={ this.clearIntervalHelper }

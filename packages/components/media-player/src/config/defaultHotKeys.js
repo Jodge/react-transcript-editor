@@ -1,35 +1,35 @@
 function returnHotKeys(self) {
   return {
-    'tab': {
+    'alt+p': {
       priority: 1,
       handler: () => {
         self.togglePlayMedia();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'tab',
+          action: 'alt+p',
           name: 'togglePlayMedia',
           value: 'na'
         });
 
       },
       displayKeyCombination: 'tab',
-      label: 'Play Media',
+      label: 'Play / Pause',
     },
-    'alt+tab': {
+    'alt+f': {
       priority: 1,
       handler: () => {
         self.skipForward();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'alt+tab',
+          action: 'alt+f',
           name: 'skipForward',
           value: 'na'
         });
 
       },
-      displayKeyCombination: 'alt + tab',
+      displayKeyCombination: 'alt + f',
       label: 'Skip Forward',
     },
     'alt+j': {

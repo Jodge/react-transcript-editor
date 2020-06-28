@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   EditorBlock,
   Modifier,
@@ -14,7 +16,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import SpeakerLabel from './SpeakerLabel';
-// import { shortTimecode, secondsToTimecode } from '../../Util/timecode-converter/';
 
 import {
   shortTimecode,
@@ -35,7 +36,7 @@ const updateSpeakerName = (oldName, newName, state) => {
   return convertFromRaw(contentToUpdate);
 };
 
-class WrapperBlock extends React.Component {
+class WrapperBlock extends Component {
   constructor(props) {
     super(props);
 
@@ -57,39 +58,6 @@ class WrapperBlock extends React.Component {
       start: start
     });
   }
-  // reducing unnecessary re-renders
-  shouldComponentUpdate = (nextProps, nextState) => {
-    if (nextProps.block.getText() !== this.props.block.getText()) {
-      return true;
-    }
-
-    if (nextProps.blockProps.showSpeakers !== this.props.blockProps.showSpeakers) {
-      return true;
-    }
-
-    if (nextProps.blockProps.showTimecodes !== this.props.blockProps.showTimecodes) {
-      return true;
-    }
-
-    if (nextProps.blockProps.timecodeOffset !== this.props.blockProps.timecodeOffset) {
-      return true;
-    }
-
-    if (nextState.speaker !== this.state.speaker) {
-      return true;
-    }
-
-    if (nextProps.blockProps.isEditable !== this.props.blockProps.isEditable) {
-      return true;
-    }
-
-    if (nextProps.block.getData().get('speaker') !== this.state.speaker) {
-
-      return true;
-    }
-
-    return false;
-  };
 
   componentDidUpdate = (prevProps, prevState) => {
 
@@ -206,5 +174,12 @@ class WrapperBlock extends React.Component {
     );
   }
 }
+
+WrapperBlock.propTypes = {
+  blockProps: PropTypes.object,
+  prevProps: PropTypes.object,
+  block: PropTypes.object,
+  contentState: PropTypes.func,
+};
 
 export default WrapperBlock;

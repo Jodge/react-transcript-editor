@@ -8,7 +8,8 @@ import {
   convertFromRaw,
   convertToRaw,
   getDefaultKeyBinding,
-  Modifier
+  Modifier,
+  RichUtils
 } from 'draft-js';
 
 import CustomEditor from './CustomEditor.js';
@@ -30,7 +31,7 @@ const findWithRegex = (regex, contentBlock, callback) => {
 };
 
 const SearchHighlight = (props) => (
-  <span className={ style.findAndReplaceHighlight }>{props.children}</span>
+  <span { ...props } className={ style.findAndReplaceHighlight }>{props.children}</span>
 );
 
 const generateDecorator = (highlightTerm) => {
@@ -386,12 +387,13 @@ class TimedTextEditor extends React.Component {
    * Listen for draftJs custom key bindings
    */
   customKeyBindingFn = e => {
-    console.log(e.keyCode);
     const enterKey = 13;
     const spaceKey = 32;
+    const fKey = 70;
     const kKey = 75;
     const lKey = 76;
     const jKey = 74;
+    const pKey = 80;
     const equalKey = 187; //used for +
     const minusKey = 189; // -
     const rKey = 82;
@@ -408,9 +410,11 @@ class TimedTextEditor extends React.Component {
       (e.altKey &&
       (e.keyCode === spaceKey ||
         e.keyCode === spaceKey ||
+        e.keyCode === fKey ||
         e.keyCode === kKey ||
         e.keyCode === lKey ||
         e.keyCode === jKey ||
+        e.keyCode === pKey ||
         e.keyCode === equalKey ||
         e.keyCode === minusKey ||
         e.keyCode === rKey ||
@@ -427,13 +431,30 @@ class TimedTextEditor extends React.Component {
   /**
    * Handle draftJs custom key commands
    */
-  handleKeyCommand = (command) => {
+  handleKeyCommand = (command, editorState, eventTimeStamp) => {
 
     if (command === 'split-paragraph') {
       this.splitParagraph();
     }
 
     if (command === 'keyboard-shortcuts') {
+      return 'handled';
+    }
+
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) {
+      this.setState({
+        editorState: newState
+      });
+
+      const data = exportAdapter(
+        convertToRaw(newState.getCurrentContent()),
+        'draftjs',
+        null
+      );
+
+      this.props.handleAutoSaveChanges(data);
+
       return 'handled';
     }
 
@@ -662,7 +683,6 @@ class TimedTextEditor extends React.Component {
         <CustomEditor
           editorState={ this.state.editorState }
           onChange={ this.onChange }
-          stripPastedStyles
           handleKeyCommand={ this.handleKeyCommand }
           customKeyBindingFn={ this.customKeyBindingFn }
           spellCheck={ this.props.spellCheck }
