@@ -76,14 +76,14 @@ function returnHotKeys(self) {
       displayKeyCombination: 'ALT + +',
       label: 'Increase Speed'
     },
-    'shift+tab': {
+    'alt+r': {
       priority: 1,
       handler: () => {
         self.rollBack();
 
         self.props.handleAnalyticsEvents({
           category: 'defaultHotKeys',
-          action: 'shift+tab',
+          action: 'alt+r',
           name: 'rollBack',
           value: 'na'
         });
